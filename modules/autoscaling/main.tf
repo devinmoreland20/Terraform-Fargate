@@ -1,5 +1,4 @@
-
-
+# ------ modules/autoscaling
 
 resource "aws_appautoscaling_target" "fargate" {
   max_capacity       = 4

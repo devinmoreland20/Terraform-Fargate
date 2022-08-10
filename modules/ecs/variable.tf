@@ -46,6 +46,6 @@ variable "host_port" {
 variable "assign_public_ip" {
 
 }
-variable "count" {
+variable "cluster_count" {
 
 }

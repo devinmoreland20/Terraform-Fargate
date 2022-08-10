@@ -7,21 +7,21 @@ packer {
   }
 }
 
-source "docker" "centos" {
-  image  = "centos:latest"
+source "docker" "ubuntu" {
+  image  = "ubuntu:latest"
   commit = true
 }
 
 build {
-  name = "centos-devin"
+  name = "ubuntu-devin"
   sources = [
-    "source.docker.centos"
+    "source.docker.ubuntu"
   ]
-
-    post-processor "docker-tag" {
+  
+  post-processor "docker-tag" {
     repository = "devin"
-    tags       = ["centos"]
-    only       = ["docker.centos"]
+    tags       = ["ubuntu"]
+    only       = ["docker.ubuntu"]
   }
 }
 

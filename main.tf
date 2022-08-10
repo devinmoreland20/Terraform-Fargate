@@ -2,7 +2,7 @@
 
 module "ecs" {
   source              = "./modules/ecs"
-  count               = 2
+  cluster_count       = 1
   cluster_name        = var.cluster_name
   capacity_provider   = var.capacity_provider
   container_name      = var.container_name
@@ -14,7 +14,7 @@ module "ecs" {
   subnets             = module.networking.subnet
   lb_target_group_arn = module.loadbalancer.lb_target_group_arn
   cpu                 = 256
-  memory              = 256
+  memory              = 512
   container_port      = 80
   host_port           = 80
   assign_public_ip    = true
