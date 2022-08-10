@@ -1,9 +1,5 @@
 # --- module/ecs/main
 
-
-
-
-
 resource "aws_ecs_cluster" "centos" {
   name = var.cluster_name
   setting {
@@ -44,7 +40,7 @@ resource "aws_ecs_task_definition" "centos" {
         logDriver = "awslogs",
         options = {
           awslogs-create-group  = "true",
-          awslogs-group         = "/ecs/centos2",
+          awslogs-group         = "/ecs/ubuntu",
           awslogs-region        = "us-east-1",
           awslogs-stream-prefix = "ecs"
       } }
@@ -61,7 +57,7 @@ resource "aws_ecs_service" "centos" {
   name            = var.cluster_name
   cluster         = aws_ecs_cluster.centos.id
   task_definition = aws_ecs_task_definition.centos.arn
-  desired_count   = var.count
+  desired_count   = var.cluster_count
   load_balancer {
     target_group_arn = var.lb_target_group_arn
     container_name   = var.container_name
