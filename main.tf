@@ -1,13 +1,5 @@
 # ----  main.tf 
 
-module "docker" {
-  source = "./modules/docker"
-
-
-}
-
-
-
 module "ecs" {
   source              = "./modules/ecs"
   count               = 2
