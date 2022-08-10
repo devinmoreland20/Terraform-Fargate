@@ -14,8 +14,8 @@ resource "aws_ecs_cluster_capacity_providers" "example" {
   capacity_providers = [var.capacity_provider]
 
   default_capacity_provider_strategy {
-    base              = 1
-    weight            = 100
+    base              = var.default_capacity_provider_strategy_base
+    weight            = var.default_capacity_provider_strategy_weight
     capacity_provider = var.capacity_provider
   }
 }
@@ -35,7 +35,7 @@ resource "aws_ecs_task_definition" "centos" {
       image     = var.container_image
       cpu       = var.cpu
       memory    = var.memory
-      essential = true
+      essential = var.container_definitions_essential
       logConfiguration : {
         logDriver = "awslogs",
         options = {
