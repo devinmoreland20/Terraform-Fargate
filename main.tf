@@ -81,5 +81,18 @@ module "iam" {
   assume_role_policy     = file("./fargate-trusted-identity.json")
 
 }
+module "web_application_firewall" {
+  source                     = "./modules/waf"
+  name                       = var.waf_name
+  description                = "waf"
+  scope                      = "REGIONAL"
+  rule_name                  = "fargate"
+  mng_rule_grp_state         = "AWSManagedRulesCommonRuleSet"
+  vendor_name                = "AWS"
+  lb_arn                     = module.loadbalancer.lb_arn
+  cloudwatch_metrics_enabled = true
+  vis_config_metric_name     = "friendly-rule-metric-name"
+  sampled_requests_enabled   = true
 
+}
 

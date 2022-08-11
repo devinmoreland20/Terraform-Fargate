@@ -57,3 +57,6 @@ variable "policy_name" {
 variable "predefined_metric_type" {
   default = "ECSServiceAverageCPUUtilization"
 }
+variable "waf_name" {
+  default = "waf-fargate"
+}
